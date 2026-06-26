@@ -1,0 +1,973 @@
+/* --- VARIABLES Y CONFIGURACIÓN GENERAL --- */
+:root {
+    --bg-principal: #0d0d11;
+    --bg-tarjetas: #16161f;
+    --rosa-neon: #ff007f;
+    --morado-neon: #8a2be2;
+    --texto-blanco: #ffffff;
+    --texto-gris: #a0a0b0;
+    --cian-dinamico: #00ffcc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-principal);
+    color: var(--texto-blanco);
+    overflow-x: hidden;
+}
+
+/* --- NAVBAR (MENÚ SUPERIOR) --- */
+header {
+    background-color: rgba(22, 22, 31, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--rosa-neon);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--texto-blanco);
+    text-decoration: none;
+    text-shadow: 0 0 8px var(--rosa-neon);
+}
+
+.logo span { 
+    color: var(--rosa-neon); 
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--texto-gris);
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--rosa-neon);
+    text-shadow: 0 0 5px var(--rosa-neon);
+}
+
+.nav-iconos {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.icono-btn {
+    background: none;
+    border: none;
+    color: var(--texto-blanco);
+    font-size: 1.3rem;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+
+.icono-btn:hover { 
+    color: var(--rosa-neon); 
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: var(--rosa-neon);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.6), var(--bg-principal)), 
+                url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=1200') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    margin-top: 70px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--morado-neon);
+}
+
+.hero p {
+    color: var(--texto-gris);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* --- BOTONES --- */
+.btn-principal {
+    background: linear-gradient(45deg, var(--rosa-neon), var(--morado-neon));
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+    transition: 0.3s;
+}
+
+.btn-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 0, 127, 0.6);
+}
+
+/* --- GRID DE PRODUCTOS --- */
+.contenedor-productos {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.titulo-seccion {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--rosa-neon);
+    padding-left: 1rem;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.tarjeta-producto {
+    background-color: var(--bg-tarjetas);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 1px solid #252535;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-5px);
+    border-color: var(--rosa-neon);
+    box-shadow: 0 5px 15px rgba(255, 0, 127, 0.2);
+}
+
+.img-producto {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background-color: #252535;
+}
+
+.info-producto {
+    padding: 1.5rem;
+}
+
+.cat-producto {
+    color: var(--rosa-neon);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.nom-producto {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.precio-producto {
+    font-size: 1.3rem;
+    color: var(--cian-dinamico);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.btn-agregar {
+    width: 100%;
+    background-color: transparent;
+    border: 2px solid var(--morado-neon);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-agregar:hover {
+    background-color: var(--morado-neon);
+}
+
+/* --- BARRA LATERAL DEL CARRITO --- */
+.sidebar-carrito {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 400px;
+    height: 100%;
+    background-color: var(--bg-tarjetas);
+    z-index: 2000;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    transition: 0.4s;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-carrito.active { 
+    right: 0; 
+}
+
+.header-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #252535;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cerrar-carrito {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.items-carrito {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.item-cart {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    border-bottom: 1px solid #252535;
+    padding-bottom: 1rem;
+}
+
+.item-cart img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.checkout-seccion {
+    border-top: 1px solid #252535;
+    padding-top: 1rem;
+}
+
+.total-wrapper {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+/* --- COMPONENTES EXTERNOS (WHATSAPP & FOOTER) --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 999;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #08080b;
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid #252535;
+    color: var(--texto-gris);
+}
+
+.redes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.redes a {
+    color: var(--texto-gris);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.redes a:hover { 
+    color: var(--rosa-neon); 
+}
+
+/* --- ADAPTACIÓN RESPONSIVE (MÓVILES) --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-tarjetas);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        transition: 0.4s;
+        border-bottom: 2px solid var(--rosa-neon);
+    }
+    
+    .nav-menu.active { 
+        top: 70px; 
+    }
+    
+    .menu-toggle { 
+        display: block; 
+    }
+    
+    .sidebar-carrito { 
+        width: 100%; 
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
+
+/* ============================================================
+   ESTILOS PARA EL MODAL DE AUTENTICACIÓN
+   ============================================================ */
+
+/* Capa de fondo oscura y difuminada (Oculta por defecto) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 15, 0.75); /* Fondo oscuro */
+    backdrop-filter: blur(8px); /* Desenfoque premium */
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2500; /* Por encima de la navegación y el carrito */
+    opacity: 0;
+    pointer-events: none; /* No interrumpe los clics mientras está oculto */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Clase que activará el JavaScript para mostrar el modal */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Contenedor Principal en forma de tarjeta flotante con animaciones */
+.auth-container {
+    position: relative; /* Para posicionar el botón de cerrar */
+    width: 100%;
+    max-width: 460px;
+    margin: 0 15px; /* Evita que toque los bordes en móviles */
+    padding: 40px 30px;
+    background: rgba(20, 20, 30, 0.85); /* Fondo oscuro translúcido */
+    border: 1px solid rgba(255, 0, 127, 0.25); /* Borde sutil neón rosa */
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+                0 0 25px rgba(138, 43, 226, 0.2); /* Brillo difuminado violeta */
+    backdrop-filter: blur(12px); /* Efecto vidrio esmerilado detrás */
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateY(-30px);
+    transition: all 0.4s ease;
+}
+
+/* Efecto de animación cuando el modal se abre */
+.modal-overlay.active .auth-container {
+    transform: translateY(0);
+}
+
+/* Botón de cerrar (X) de la esquina superior derecha */
+.cerrar-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #a3a3a3;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.cerrar-modal:hover {
+    color: var(--rosa-neon); /* Cambia a tu rosa de neón al pasar el mouse */
+}
+
+/* Barra superior de pestañas (Tabs) */
+.auth-tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+    background: rgba(10, 10, 15, 0.6);
+    padding: 6px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: #a3a3a3;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+}
+
+/* Pestaña activa con degradado Glow */
+.tab-btn.active {
+    background: linear-gradient(135deg, #ff007f, #7928ca);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.4);
+}
+
+/* Estructura de los Formularios */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Clase utilitaria para ocultar el formulario inactivo (Controlado por tu JS) */
+.auth-form.hidden {
+    display: none !important;
+}
+
+.auth-form h2 {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+}
+
+/* Grupos de inputs y etiquetas */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: #e0e0e0;
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(10, 10, 15, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: #555555;
+}
+
+/* Efecto de enfoque (Focus) con resplandor neón */
+.input-group input:focus {
+    border-color: #ff007f;
+    box-shadow: 0 0 12px rgba(255, 0, 127, 0.4), 
+                inset 0 0 4px rgba(255, 0, 127, 0.1);
+    background: rgba(15, 15, 25, 0.9);
+}
+
+/* Botón principal de envío (Ingresar / Crear Cuenta) */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ff007f, #7928ca);
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 127, 0.35);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(255, 0, 127, 0.55), 
+                0 0 15px rgba(121, 40, 202, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* Divisor estético "O entra con" */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 25px 0;
+    color: #666666;
+    font-size: 0.8rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-divider:not(:empty)::before {
+    margin-right: .8em;
+}
+
+.auth-divider:not(:empty)::after {
+    margin-left: .8em;
+}
+
+.auth-divider span {
+    padding: 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Botón de Facebook Integrado */
+.btn-facebook {
+    width: 100%;
+    padding: 13px;
+    background: #1877f2;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-facebook:hover {
+    background: #166fe5;
+    box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-facebook:active {
+    transform: translateY(0);
+}
+
+/* Responsivo para celulares */
+@media (max-width: 480px) {
+    .auth-container {
+        margin: 0 15px;
+        padding: 30px 20px;
+    }
+    
+    .auth-form h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ============================================================
+   ESTILOS PANEL LATERAL DE USUARIO (SIDEBAR PERFIL)
+   ============================================================ */
+
+/* Contenedor del Icono con indicador en el Navbar */
+.user-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.status-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background-color: #2ec4b6; /* Verde menta neón para sesión activa */
+    border: 2px solid #0a0a0f;
+    border-radius: 50%;
+    opacity: 0; /* Invisible por defecto */
+    transition: opacity 0.3s ease;
+}
+
+.status-dot.active {
+    opacity: 1;
+    box-shadow: 0 0 8px #2ec4b6;
+}
+
+/* Estructura del Sidebar */
+.sidebar-usuario {
+    position: fixed;
+    top: 0;
+    right: -420px; /* Oculto por defecto */
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: rgba(15, 15, 25, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+    border-left: 1px solid rgba(255, 0, 127, 0.15);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-usuario.active {
+    right: 0;
+}
+
+/* Encabezado del Perfil */
+.header-usuario {
+    padding: 30px 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(138, 43, 226, 0.1), transparent);
+}
+
+.user-info-mini {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info-mini i {
+    font-size: 2.8rem;
+    color: #ff007f;
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+}
+
+.user-info-mini h3 {
+    color: #ffffff;
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+}
+
+.user-info-mini span {
+    color: #a3a3a3;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.cerrar-usuario {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cerrar-usuario:hover {
+    color: #ff007f;
+}
+
+/* Cuerpo de Opciones */
+.contenido-usuario {
+    padding: 20px 25px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.seccion-menu {
+    margin-bottom: 28px;
+}
+
+.seccion-menu h4 {
+    color: #7928ca; /* Violeta Premium */
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Filas interactivas de opciones */
+.opcion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.opcion-item:hover {
+    background: rgba(255, 0, 127, 0.05);
+    border-color: rgba(255, 0, 127, 0.3);
+    transform: translateX(-3px);
+}
+
+.opcion-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.opcion-info span {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.opcion-info small {
+    color: #666666;
+    font-size: 0.78rem;
+}
+
+.opcion-item > i {
+    color: #444444;
+    font-size: 0.9rem;
+    transition: color 0.25s;
+}
+
+.opcion-item:hover > i {
+    color: #ff007f;
+}
+
+/* Alertas de Estado (Badges) */
+.badge-status {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.badge-status.pendiente {
+    background: rgba(255, 159, 67, 0.15);
+    color: #ff9f43;
+    border: 1px solid rgba(255, 159, 67, 0.3);
+}
+
+.badge-status.enviado {
+    background: rgba(46, 196, 182, 0.15);
+    color: #2ec4b6;
+    border: 1px solid rgba(46, 196, 182, 0.3);
+}
+
+/* Opciones de Salida Especiales */
+.seccion-menu.salida {
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.opcion-item.switch-acc {
+    justify-content: flex-start;
+    gap: 12px;
+    color: #a3a3a3;
+}
+
+.opcion-item.switch-acc:hover {
+    color: #ffffff;
+    background: rgba(121, 40, 202, 0.1);
+    border-color: rgba(121, 40, 202, 0.4);
+}
+
+.opcion-item.logout {
+    justify-content: flex-start;
+    gap: 12px;
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.02);
+}
+
+.opcion-item.logout:hover {
+    background: rgba(255, 77, 77, 0.1);
+    border-color: rgba(255, 77, 77, 0.4);
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.15);
+}
+
+/* Responsivo */
+@media (max-width: 420px) {
+    .sidebar-usuario {
+        max-width: 100%;
+        right: -100%;
+    }
+}
+
+/* ============================================================
+   SISTEMA DE NOTIFICACIONES TOAST (PREMIUM)
+   ============================================================ */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: rgba(15, 15, 25, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #ffffff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Variaciones de color según la acción */
+.toast.success {
+    border-left: 4px solid #2ec4b6; /* Verde menta */
+    box-shadow: 0 0 15px rgba(46, 196, 182, 0.15);
+}
+
+.toast.error {
+    border-left: 4px solid #ff4d4d; /* Rojo */
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.15);
+}
+
+.toast.info {
+    border-left: 4px solid #ff007f; /* Rosa neón */
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.15);
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* ============================================================
+   ESTILOS PARA SUB-MODALES DE CONFIGURACIÓN
+   ============================================================ */
+.sub-modal-content {
+    max-width: 500px !important;
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Tablas e historiales sencillos dentro de los sub-modales */
+.tabla-pedidos-mini {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla-pedidos-mini th, .tabla-pedidos-mini td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+}
+
+.tabla-pedidos-mini th {
+    color: #7928ca;
+    font-weight: 600;
+}
+
+.sub-modal-content h3 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px rgba(255, 0, 127, 0.3);
+}

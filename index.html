@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlowVibe - Sex Shop Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="frontend/css/styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">GLOW<span>VIBE</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#productos">Juguetes</a></li>
+                <li><a href="#productos">Lencería</a></li>
+                <li><a href="#productos">Potenciadores</a></li>
+            </ul>
+            <div class="nav-iconos">
+                <button class="icono-btn" id="cartToggle" aria-label="Ver carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                
+                <button class="icono-btn" id="btnAbrirAuth" aria-label="Mi Perfil">
+                    <div class="user-icon-wrapper">
+                        <i class="fas fa-user" id="userIcon"></i>
+                        <span class="status-dot" id="statusDot"></span>
+                    </div>
+                </button>
+
+                <i class="fas fa-bars menu-toggle" id="menuToggle"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Explora Tus Fantasías Premium</h1>
+        <p>Envíos 100% discretos a todo el país. Tu privacidad es nuestra prioridad.</p>
+        <button class="btn-principal" id="btnHero">Ver Catálogo</button>
+    </section>
+
+    <main class="contenedor-productos" id="productos">
+        <h2 class="titulo-seccion">Productos Destacados</h2>
+        <div class="grid-productos" id="gridProductos">
+            </div>
+    </main>
+
+    <div class="sidebar-carrito" id="sidebarCarrito">
+        <div class="header-carrito">
+            <h3>Tu Carrito</h3>
+            <button class="cerrar-carrito" id="cerrarCarrito">&times;</button>
+        </div>
+        <div class="items-carrito" id="itemsCarrito">
+            </div>
+        <div class="checkout-seccion">
+            <div class="total-wrapper">
+                <span>Total:</span>
+                <span id="totalPrecio">$0.00</span>
+            </div>
+            <button class="btn-principal" style="width: 100%;" id="btnCheckout">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <div class="sidebar-usuario" id="sidebarUsuario">
+        <div class="header-usuario">
+            <div class="user-info-mini">
+                <i class="fas fa-user-circle"></i>
+                <div>
+                    <h3 id="userMenuNombre">Cargando...</h3>
+                    <span id="userMenuRol">Cliente Premium</span>
+                </div>
+            </div>
+            <button class="cerrar-usuario" id="cerrarUsuario">&times;</button>
+        </div>
+
+        <div class="contenido-usuario">
+            <div class="seccion-menu">
+                <h4><i class="fas fa-shopping-bag"></i> Seguimiento</h4>
+                <div class="opcion-item" onclick="abrirSubSeccion('pedidos')">
+                    <div class="opcion-info">
+                        <span>Estado del Pedido</span>
+                        <small>Ver si ya salió o está pendiente</small>
+                    </div>
+                    <span class="badge-status pendiente">Pendiente</span>
+                </div>
+            </div>
+
+            <div class="seccion-menu">
+                <h4><i class="fas fa-truck"></i> Logística y Pagos</h4>
+                <div class="opcion-item" onclick="abrirSubSeccion('direcciones')">
+                    <div class="opcion-info">
+                        <span>Lugar de Entrega</span>
+                        <small>Agregar dirección y método de contacto</small>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="opcion-item" onclick="abrirSubSeccion('pagos')">
+                    <div class="opcion-info">
+                        <span>Métodos de Pago</span>
+                        <small>Gestionar tarjetas o billeteras virtuales</small>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div class="seccion-menu">
+                <h4><i class="fas fa-cog"></i> Seguridad y Cuenta</h4>
+                <div class="opcion-item" onclick="abrirSubSeccion('correo')">
+                    <div class="opcion-info">
+                        <span>Cambiar Correo Electrónico</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="opcion-item" onclick="abrirSubSeccion('password')">
+                    <div class="opcion-info">
+                        <span>Cambiar Contraseña</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="opcion-item" onclick="abrirSubSeccion('ayuda')">
+                    <div class="opcion-info">
+                        <span>Ayuda y Soporte Técnico</span>
+                    </div>
+                    <i class="fas fa-question-circle"></i>
+                </div>
+            </div>
+
+            <div class="seccion-menu salida">
+                <div class="opcion-item switch-acc" id="btnCambiarCuenta">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Cambiar de Cuenta</span>
+                </div>
+                <div class="opcion-item logout" id="btnCerrarSesion">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modalAuth">
+        <div class="auth-container">
+            <button class="cerrar-modal" id="btnCerrarAuth">&times;</button>
+
+            <div class="auth-tabs">
+                <button id="tab-login" class="tab-btn active" onclick="switchTab('login')">Iniciar Sesión</button>
+                <button id="tab-register" class="tab-btn" onclick="switchTab('register')">Registrarse</button>
+            </div>
+
+            <form id="form-login" class="auth-form">
+                <h2>¡Bienvenido de nuevo!</h2>
+                <div class="input-group">
+                    <label>Correo Electrónico o Teléfono</label>
+                    <input type="text" id="login-identifier" required placeholder="ejemplo@correo.com o 3001234567">
+                </div>
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-submit">Ingresar</button>
+
+                <div class="auth-divider"><span>O entra con</span></div>
+                <button type="button" class="btn-facebook" onclick="loginFacebook()">
+                    <i class="fab fa-facebook-f"></i> Continuar con Facebook
+                </button>
+            </form>
+
+            <form id="form-register" class="auth-form hidden">
+                <h2>Crea tu cuenta en GlowVibe</h2>
+                <div class="input-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="reg-nombre" required placeholder="Tu nombre y apellido">
+                </div>
+                <div class="input-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="reg-correo" required placeholder="ejemplo@correo.com">
+                </div>
+                <div class="input-group">
+                    <label>Número Telefónico</label>
+                    <input type="tel" id="reg-telefono" placeholder="Ej: 3001234567">
+                </div>
+                <div class="input-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="reg-password" required placeholder="Mínimo 6 caracteres">
+                </div>
+                <button type="submit" class="btn-submit">Crear Cuenta</button>
+
+                <div class="auth-divider"><span>O regístrate con</span></div>
+                <button type="button" class="btn-facebook" onclick="loginFacebook()">
+                    <i class="fab fa-facebook-f"></i> Registrarse con Facebook
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <a href="https://wa.me/573001234567?text=Hola!%20Me%20gustaría%20recibir%20asesoría%20discreta." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="redes">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2026 GlowVibe. Todos los derechos reservados. Conexión segura y privada.</p>
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- INTEGRACIÓN NUEVA: SUB-MODALES PARA CONFIGURACIÓN DINÁMICA -->
+    <div class="modal-overlay" id="modalSubSeccion">
+        <div class="auth-container sub-modal-content">
+            <button class="cerrar-modal" id="btnCerrarSub">&times;</button>
+            <div id="subSeccionDinamica"></div>
+        </div>
+    </div>
+
+    <script src="frontend/js/app.js" defer></script>
+</body>
+</html>
