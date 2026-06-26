@@ -1,7 +1,7 @@
 // ============================================================
 // CONFIGURACIÓN GLOBAL Y ESTADO DE LA APLICACIÓN
 // ============================================================
-const API_URL = 'http://127.0.0.1:5000/api';
+const API_URL = 'https://sturdy-pancake-5vgj9vwv5w9h774w-5000.app.github.dev/api';
 let carrito = [];
 let usuarioLogueado = null; 
 
